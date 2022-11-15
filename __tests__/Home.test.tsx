@@ -1,13 +1,13 @@
-import { describe, expect, test } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
-import Home from '../pages'
+import { describe, expect, test } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import Home from "../pages";
 
-describe('Home', () => {
-  test('home', () => {
+describe("Home", () => {
+  test("home", () => {
     // When
-    render(<Home />)
-    
+    render(<Home />);
+
     // Then
-    expect(screen.getByText('Welcome')).toBeDefined()
-  })
-})
+    expect(screen.getByText("Welcome")).toBeDefined();
+  });
+});
