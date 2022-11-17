@@ -1,6 +1,14 @@
-import { PropsWithChildren } from "react";
 import "./globals.css";
 
-export default function MainLayput({ children }: PropsWithChildren<unknown>) {
-  return <>{children}</>;
+export default function MainLayput({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html>
+      <head />
+      <body>{children}</body>
+    </html>
+  );
 }
