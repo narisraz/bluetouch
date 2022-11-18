@@ -1,3 +1,12 @@
+import ButtonContained from "@/components/button-contained";
+import ButtonIcon from "@/components/button-icon";
+import ButtonOutlined from "@/components/button-outlined";
+import Chip from "@/components/chip";
+import Table from "@/components/table";
+import TableCell from "@/components/table-cell";
+import TableColumnHead from "@/components/table-column-head";
+import TableRow from "@/components/table-row";
+import TableRowHead from "@/components/table-row-head";
 import {
   RiAddBoxLine,
   RiDeleteBin3Line,
@@ -6,15 +15,6 @@ import {
   RiSearchLine,
   RiStopLine,
 } from "react-icons/ri";
-import ButtonContained from "../../../components/button-contained";
-import ButtonIcon from "../../../components/button-icon";
-import ButtonOutlined from "../../../components/button-outlined";
-import Chip from "../../../components/chip";
-import Table from "../../../components/table";
-import TableCell from "../../../components/table-cell";
-import TableColumnHead from "../../../components/table-column-head";
-import TableRow from "../../../components/table-row";
-import TableRowHead from "../../../components/table-row-head";
 
 export default function ListOrganismes() {
   return (
@@ -57,7 +57,7 @@ export default function ListOrganismes() {
             <TableCell>Zara</TableCell>
             <TableCell>Naris</TableCell>
             <TableCell>032 63 498 64</TableCell>
-            <TableCell>naris@gmail.com</TableCell>
+            <TableCell>naris@/componentsgmail.com</TableCell>
             <TableCell>
               <Chip className="bg-success">Activé</Chip>
             </TableCell>
@@ -76,7 +76,7 @@ export default function ListOrganismes() {
             <TableCell>Zara</TableCell>
             <TableCell>Naris</TableCell>
             <TableCell>032 63 498 64</TableCell>
-            <TableCell>naris@gmail.com</TableCell>
+            <TableCell>naris@/componentsgmail.com</TableCell>
             <TableCell>
               <Chip className="bg-error">Suspendu</Chip>
             </TableCell>
