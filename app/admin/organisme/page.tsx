@@ -25,7 +25,7 @@ export default function ListOrganismes() {
           <input
             name="search"
             type="text"
-            className="w-96 py-2 px-2 ml-2 focus:outline-primary/50 border rounded"
+            className="w-96 py-2 px-3 ml-2 focus:outline-primary/50 border rounded"
             placeholder="Rechercher..."
           />
           <ButtonIcon className="ml-2">
