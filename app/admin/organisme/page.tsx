@@ -2,6 +2,7 @@ import {
   RiAddBoxLine,
   RiDeleteBin3Line,
   RiFilter3Line,
+  RiPlayLine,
   RiSearchLine,
   RiStopLine,
 } from "react-icons/ri";
@@ -81,7 +82,7 @@ export default function ListOrganismes() {
             <TableCell>
               <div className="flex">
                 <ButtonOutlined>
-                  <RiStopLine />
+                  <RiPlayLine />
                 </ButtonOutlined>
                 <ButtonOutlined>
                   <RiDeleteBin3Line />
