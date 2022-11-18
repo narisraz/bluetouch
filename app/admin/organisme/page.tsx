@@ -7,6 +7,7 @@ import {
   RiStopLine,
 } from "react-icons/ri";
 import ButtonContained from "../../../components/button-contained";
+import ButtonIcon from "../../../components/button-icon";
 import ButtonOutlined from "../../../components/button-outlined";
 import Chip from "../../../components/chip";
 import Table from "../../../components/table";
@@ -27,9 +28,9 @@ export default function ListOrganismes() {
             className="w-96 py-2 px-2 ml-2 focus:outline-primary/50 border rounded bg-primary/5"
             placeholder="Rechercher..."
           />
-          <ButtonOutlined className="ml-2">
+          <ButtonIcon className="ml-2">
             <RiSearchLine />
-          </ButtonOutlined>
+          </ButtonIcon>
         </div>
         <div className="flex">
           <ButtonOutlined className="mr-2">
@@ -62,12 +63,12 @@ export default function ListOrganismes() {
             </TableCell>
             <TableCell>
               <div className="flex">
-                <ButtonOutlined>
+                <ButtonIcon>
                   <RiStopLine />
-                </ButtonOutlined>
-                <ButtonOutlined>
+                </ButtonIcon>
+                <ButtonIcon>
                   <RiDeleteBin3Line />
-                </ButtonOutlined>
+                </ButtonIcon>
               </div>
             </TableCell>
           </TableRow>
@@ -81,12 +82,12 @@ export default function ListOrganismes() {
             </TableCell>
             <TableCell>
               <div className="flex">
-                <ButtonOutlined>
+                <ButtonIcon>
                   <RiPlayLine />
-                </ButtonOutlined>
-                <ButtonOutlined>
+                </ButtonIcon>
+                <ButtonIcon>
                   <RiDeleteBin3Line />
-                </ButtonOutlined>
+                </ButtonIcon>
               </div>
             </TableCell>
           </TableRow>
