@@ -1,4 +1,3 @@
-"use client";
 import { RiDashboardLine, RiOrganizationChart } from "react-icons/ri";
 import MenuItem from "./menu-item";
 

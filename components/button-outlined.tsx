@@ -1,5 +1,3 @@
-"use client";
-
 import { Props } from "./props";
 
 export default function ButtonOutlined({ children, className }: Props) {
