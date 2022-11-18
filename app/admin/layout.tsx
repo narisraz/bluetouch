@@ -14,9 +14,16 @@ export default function AdminLayput({
         <Menu />
       </div>
       <div className="flex-1 bg-background">
-        <div className="flex p-4 bg-surface justify-end border-b">
-          <div className="px-2">Naris</div>
-          <div className="w-8 h-8 bg-primary rounded-full"></div>
+        <div className="flex p-4 bg-surface border-b justify-between">
+          <div className="flex gap-1">
+            /<div className="text-primary cursor-pointer">organismes</div>/
+            <div className="text-primary cursor-pointer">nouveau</div>
+          </div>
+
+          <div className="flex">
+            <div className="px-2">Naris</div>
+            <div className="w-8 h-8 bg-primary rounded-full"></div>
+          </div>
         </div>
         <div className="m-4">{children}</div>
       </div>

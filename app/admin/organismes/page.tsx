@@ -1,3 +1,5 @@
+"use client";
+
 import ButtonContained from "@/components/button-contained";
 import ButtonIcon from "@/components/button-icon";
 import ButtonOutlined from "@/components/button-outlined";
@@ -7,6 +9,7 @@ import TableCell from "@/components/table-cell";
 import TableColumnHead from "@/components/table-column-head";
 import TableRow from "@/components/table-row";
 import TableRowHead from "@/components/table-row-head";
+import Link from "next/link";
 import {
   RiAddBoxLine,
   RiDeleteBin3Line,
@@ -37,10 +40,12 @@ export default function ListOrganismes() {
             <RiFilter3Line className="mr-2" />
             Filtrer
           </ButtonOutlined>
-          <ButtonContained>
-            <RiAddBoxLine className="mr-2" />
-            Nouveau
-          </ButtonContained>
+          <Link href={"/admin/organismes/nouveau"}>
+            <ButtonContained>
+              <RiAddBoxLine className="mr-2" />
+              Nouveau
+            </ButtonContained>
+          </Link>
         </div>
       </div>
       <Table className="mt-4">
