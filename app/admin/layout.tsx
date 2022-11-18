@@ -13,7 +13,7 @@ export default function AdminLayput({
         </div>
         <Menu />
       </div>
-      <div className="bg-primary/5 flex-1">
+      <div className="flex-1">
         <div className="flex p-4 bg-surface justify-end border-b">
           <div className="px-2">Naris</div>
           <div className="w-8 h-8 bg-primary rounded-full"></div>

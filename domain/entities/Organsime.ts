@@ -5,7 +5,7 @@ class Organisme {
   private _nom!: string;
   private _tel!: string;
   private _email!: string;
-  private _etat: Etat = Etat.BLOQUE;
+  private _etat: Etat = Etat.SUSPENDU;
 
   /**
    * Getter responsable

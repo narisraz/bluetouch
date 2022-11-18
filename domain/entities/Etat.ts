@@ -1,6 +1,6 @@
 enum Etat {
   ACTIVE,
-  BLOQUE,
+  SUSPENDU,
 }
 
 export default Etat;

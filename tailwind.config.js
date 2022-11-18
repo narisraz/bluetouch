@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: "jit",
@@ -12,6 +14,8 @@ module.exports = {
         primary: "#60a5fa",
         onPrimary: "#ffffff",
         surface: "#ffffff",
+        success: colors.green[300],
+        error: colors.red[300],
       },
     },
   },
