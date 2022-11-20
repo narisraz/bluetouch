@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "paths": {
-      "@/components/*": ["./components/*"]
+      "@/components/*": ["./components/*"],
+      "@/domain/*": ["./domain/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
