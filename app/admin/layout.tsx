@@ -1,4 +1,6 @@
+import Link from "@/components/link";
 import Menu from "@/components/menu";
+import { RiArrowRightSLine, RiHome2Line } from "react-icons/ri";
 
 export default function AdminLayput({
   children,
@@ -15,9 +17,14 @@ export default function AdminLayput({
       </div>
       <div className="flex-1 bg-background">
         <div className="flex p-4 bg-surface border-b justify-between">
-          <div className="flex gap-1">
-            /<div className="text-primary cursor-pointer">organismes</div>/
-            <div className="text-primary cursor-pointer">nouveau</div>
+          <div className="flex gap-1 items-center">
+            <Link href="/admin">
+              <RiHome2Line />
+            </Link>
+            <RiArrowRightSLine />
+            <Link href="/admin/organismes">Organismes</Link>
+            <RiArrowRightSLine />
+            <div className="font-semibold">Nouvel organisme</div>
           </div>
 
           <div className="flex">
