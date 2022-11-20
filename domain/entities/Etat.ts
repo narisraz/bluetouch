@@ -1,6 +1,6 @@
 enum Etat {
-  ACTIVE,
-  SUSPENDU,
+  ACTIVE = "Activé",
+  SUSPENDU = "Suspendu",
 }
 
 export default Etat;
