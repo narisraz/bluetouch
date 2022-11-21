@@ -6,7 +6,7 @@ import { z } from "zod";
 import { sendMagicLink } from "~/modules/auth";
 import { assertIsPost } from "~/utils/http.server";
 
-export async function action({ request }: ActionArgs) {
+export default async function action({ request }: ActionArgs) {
   assertIsPost(request);
 
   const formData = await request.formData();

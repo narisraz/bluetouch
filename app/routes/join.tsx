@@ -33,7 +33,7 @@ const JoinFormSchema = z.object({
   redirectTo: z.string().optional(),
 });
 
-export async function action({ request }: ActionArgs) {
+export default async function action({ request }: ActionArgs) {
   assertIsPost(request);
   const formData = await request.formData();
   const result = await JoinFormSchema.safeParseAsync(parseFormAny(formData));

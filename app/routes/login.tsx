@@ -69,7 +69,7 @@ export const meta: MetaFunction = ({ data }) => ({
   title: data.title,
 });
 
-export function LoginPage() {
+export default function LoginPage() {
   const zo = useZorm("NewQuestionWizardScreen", LoginFormSchema);
   const [searchParams] = useSearchParams();
   const redirectTo = searchParams.get("redirectTo") ?? undefined;

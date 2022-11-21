@@ -93,7 +93,7 @@ export async function action({ request }: ActionArgs) {
   });
 }
 
-export function LoginCallback() {
+export default function LoginCallback() {
   const error = useActionData<typeof action>();
   const fetcher = useFetcher();
   const [searchParams] = useSearchParams();
