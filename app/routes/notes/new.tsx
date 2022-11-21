@@ -46,7 +46,7 @@ export async function action({ request }: LoaderArgs) {
   });
 }
 
-export default function NewNotePage() {
+export function NewNotePage() {
   const zo = useZorm("NewQuestionWizardScreen", NewNoteFormSchema);
   const transition = useTransition();
   const disabled = isFormProcessing(transition.state);

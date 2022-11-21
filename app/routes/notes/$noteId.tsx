@@ -32,7 +32,7 @@ export async function action({ request, params }: ActionArgs) {
   });
 }
 
-export default function NoteDetailsPage() {
+export function NoteDetailsPage() {
   const data = useLoaderData<typeof loader>();
 
   return (

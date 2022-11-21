@@ -18,7 +18,7 @@ export async function loader({ request }: LoaderArgs) {
   return json({ email, notes });
 }
 
-export default function NotesPage() {
+export function NotesPage() {
   const data = useLoaderData<typeof loader>();
 
   return (

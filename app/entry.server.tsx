@@ -11,7 +11,7 @@ import { createI18nextServerInstance } from "./integrations/i18n";
 
 const ABORT_DELAY = 5000;
 
-export default async function handleRequest(
+export async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,

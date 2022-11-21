@@ -39,7 +39,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   });
 };
 
-export default function App() {
+export function App() {
   const { env, locale } = useLoaderData<typeof loader>();
   const { i18n } = useTranslation();
 

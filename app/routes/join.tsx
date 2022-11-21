@@ -1,5 +1,3 @@
-import * as React from "react";
-
 import type { ActionArgs, LoaderArgs, MetaFunction } from "@remix-run/node";
 import { redirect, json } from "@remix-run/node";
 import { Form, Link, useSearchParams, useTransition } from "@remix-run/react";
@@ -80,7 +78,7 @@ export const meta: MetaFunction = ({ data }) => ({
   title: data.title,
 });
 
-export default function Join() {
+export function Join() {
   const zo = useZorm("NewQuestionWizardScreen", JoinFormSchema);
   const [searchParams] = useSearchParams();
   const redirectTo = searchParams.get("redirectTo") ?? undefined;
