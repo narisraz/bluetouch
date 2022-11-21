@@ -13,7 +13,7 @@ export function meta() {
 }
 
 export default function Nouveau() {
-  const options: Option[] = Object.values(Etat).map((etat, index, etats) => ({
+  const options: Option[] = Object.values(Etat).map((_, index, etats) => ({
     key: index.toString(),
     label: etats[index],
     value: index.toString(),
