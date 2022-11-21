@@ -8,6 +8,10 @@ import type { Option} from "~/components/select";
 import { Select } from "~/components/select";
 import { Etat } from "~/domain/entities/Etat";
 
+export function meta() {
+  return { title: "Nouvel Organisme" };
+}
+
 export default function Nouveau() {
   const options: Option[] = Object.values(Etat).map((etat, index, etats) => ({
     key: index.toString(),

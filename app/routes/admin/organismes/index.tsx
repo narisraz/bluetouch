@@ -11,6 +11,10 @@ import { TableColumnHead } from "~/components/table-column-head";
 import { TableRow } from "~/components/table-row";
 import { TableRowHead } from "~/components/table-row-head";
 
+export function meta() {
+  return { title: "Les des organismes" };
+}
+
 export default function ListOrganismes() {
   return (
     <div>
