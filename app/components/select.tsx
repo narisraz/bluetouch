@@ -12,12 +12,14 @@ export interface Option {
 interface SelectProps {
   selected: string;
   options: Option[];
+  name: string;
   onChange: (value: string) => void;
 }
 
-export function Select({ selected, options, onChange }: SelectProps) {
+export function Select({ selected, options, name, onChange }: SelectProps) {
   return (
     <div className="relative ml-2">
+      <input type={"hidden"} name={name} value={selected} />
       <Listbox value={selected} onChange={onChange}>
         <Listbox.Button
           className={`w-80 rounded border py-2 px-3 text-left focus:outline-primary/50`}
