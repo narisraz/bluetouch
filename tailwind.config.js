@@ -4,6 +4,9 @@ module.exports = {
   mode: "jit",
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
   theme: {
+    fontFamily: {
+      'roboto': ['Roboto', 'sans-serif'],
+    },
     extend: {
       colors: {
         primary: "#60a5fa",

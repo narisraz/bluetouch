@@ -1,4 +1,4 @@
-import { ActionArgs } from "@remix-run/node";
+import { ActionArgs, redirect } from "@remix-run/node";
 import { Form } from "@remix-run/react";
 import { useState } from "react";
 import { parseFormAny, useZorm } from "react-zorm";
@@ -12,6 +12,8 @@ import { Link } from "~/components/link";
 import type { Option} from "~/components/select";
 import { Select } from "~/components/select";
 import { Etat } from "~/domain/entities/Etat";
+import { OrganismeMapper } from "~/modules/organisme/organisme.mapper";
+import { addOrganisme } from "~/modules/organisme/usecases/addOrganisme";
 import { assertIsPost } from "~/utils";
 
 const NouveauForm = z.object({
@@ -29,6 +31,13 @@ export const action = async ({request}: ActionArgs) => {
   const formData = await request.formData();
   const result = await NouveauForm.safeParseAsync(parseFormAny(formData));
 
+  if (result.success) {
+    const organisme = OrganismeMapper.fromJson(result.data);
+    addOrganisme.execute(organisme)
+      .finally(() => redirect('/admin/organismes'))
+  }
+
+  return null;
 }
 
 export function meta() {
