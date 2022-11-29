@@ -1,6 +1,6 @@
-import { Organisme } from "~/domain/entities/Organisme";
-import { OrganismeRepository } from "~/domain/ports/OrganismeRepository";
-import { ResponseStatus } from "~/domain/usecases/responses/ResponseStatus";
+import type { Organisme } from "~/domain/entities/Organisme";
+import type { OrganismeRepository } from "~/domain/ports/OrganismeRepository";
+import type { ResponseStatus } from "~/domain/usecases/responses/ResponseStatus";
 
 export class OrganismeGateway implements OrganismeRepository {
 	getByNom(nom: string): Promise<ResponseStatus<Organisme>> {
