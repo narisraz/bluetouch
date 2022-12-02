@@ -1,3 +1,5 @@
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import { RiSearchLine, RiFilter3Line, RiAddBoxLine, RiStopLine, RiDeleteBin3Line, RiPlayLine } from "react-icons/ri";
 
 import { ButtonContained } from "~/components/button-contained";
@@ -10,12 +12,49 @@ import { TableCell } from "~/components/table-cell";
 import { TableColumnHead } from "~/components/table-column-head";
 import { TableRow } from "~/components/table-row";
 import { TableRowHead } from "~/components/table-row-head";
+import type { Organisme } from "~/domain/entities/Organisme";
+import { countOrganismes } from "~/modules/organisme/usecases/countOrganismes";
+import { listOrganismes } from "~/modules/organisme/usecases/listOrganismes";
+
+interface LoaderData {
+  organismesCount: number,
+  organismes: Organisme[]
+}
+
+export async function loader() {
+  const organismesCount = await countOrganismes.execute();
+
+  if (!organismesCount.isSuccess) {
+    return json<LoaderData>({
+      organismes: [],
+      organismesCount: 0
+    })
+  }
+
+  const organismes = await listOrganismes.execute({
+    from: 0,
+    to: 9
+  })
+
+  if (!organismes.isSuccess) {
+    return json<LoaderData>({
+      organismes: [],
+      organismesCount: 0
+    })
+  }
+
+  return json<LoaderData>({
+    organismes: organismes.data ?? [],
+    organismesCount: organismesCount.data ?? 0
+  })
+}
 
 export function meta() {
   return { title: "Les des organismes" };
 }
 
 export default function ListOrganismes() {
+  const {organismesCount: count, organismes} = useLoaderData<LoaderData>()
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -53,6 +92,30 @@ export default function ListOrganismes() {
           <TableColumnHead className="w-10 text-right">Actions</TableColumnHead>
         </TableRowHead>
         <tbody>
+          <>
+            {organismes.map((value) => {
+              <TableRow>
+                <TableCell>{value.nom}</TableCell>
+                <TableCell>{value.responsable}</TableCell>
+                <TableCell>{value.tel}</TableCell>
+                <TableCell>{value.email}</TableCell>
+                <TableCell>
+                  <Chip className="bg-success">Activé</Chip>
+                </TableCell>
+                <TableCell>
+                  <div className="flex">
+                    <ButtonIcon>
+                      <RiStopLine />
+                    </ButtonIcon>
+                    <ButtonIcon>
+                      <RiDeleteBin3Line />
+                    </ButtonIcon>
+                  </div>
+                </TableCell>
+              </TableRow>;
+            })}
+          </>
+          
           <TableRow>
             <TableCell>Zara</TableCell>
             <TableCell>Naris</TableCell>

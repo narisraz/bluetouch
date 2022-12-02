@@ -1,14 +1,14 @@
 import type { Organisme } from "~/domain/entities/Organisme";
 import type { OrganismeRepository } from "~/domain/ports/OrganismeRepository";
-import type { ListOrganismesBetweenContractDatesRequest } from "~/domain/usecases/requests/ListOrganismesBetweenContractDatesRequest";
+import type { ListOrganismesRequest } from "~/domain/usecases/requests/ListOrganismes";
 import type { ResponseStatus } from "~/domain/usecases/responses/ResponseStatus";
 import type { IUseCase } from "~/domain/usecases/UseCase";
 
-export class ListOrganismesBetweenContractDates
+export class ListOrganismes
   implements
   IUseCase<
-      ListOrganismesBetweenContractDatesRequest,
-      Promise<ResponseStatus<Organisme>>
+  ListOrganismesRequest,
+      Promise<ResponseStatus<Organisme[]>>
     >
 {
   private _organismeRepository: OrganismeRepository;
@@ -18,9 +18,9 @@ export class ListOrganismesBetweenContractDates
   }
 
   execute(
-    request: ListOrganismesBetweenContractDatesRequest
-  ): Promise<ResponseStatus<Organisme>> {
-    return this._organismeRepository.getAllBetweenContractDates(
+    request: ListOrganismesRequest
+  ): Promise<ResponseStatus<Organisme[]>> {
+    return this._organismeRepository.getAll(
       request.from,
       request.to
     );
