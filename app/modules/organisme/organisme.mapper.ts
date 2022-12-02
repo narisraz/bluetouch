@@ -10,4 +10,14 @@ export class OrganismeMapper {
 		organisme.tel = json['tel'];
 		return organisme;
 	}
+
+	static toJson(organisme: Organisme) {
+		return {
+			email: organisme.email,
+			nom: organisme.nom,
+			responsable: organisme.responsable,
+			tel: organisme.tel,
+			etat: organisme.etat
+		}
+	}
 }

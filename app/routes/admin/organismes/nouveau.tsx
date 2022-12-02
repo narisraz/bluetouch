@@ -2,7 +2,8 @@ import { useState } from "react";
 
 import type { ActionArgs} from "@remix-run/node";
 import { redirect } from "@remix-run/node";
-import { Form } from "@remix-run/react";
+import { Form, useTransition } from "@remix-run/react";
+import { RiSaveLine } from "react-icons/ri";
 import { parseFormAny, useZorm } from "react-zorm";
 import { z } from "zod";
 
@@ -35,8 +36,12 @@ export const action = async ({request}: ActionArgs) => {
 
   if (result.success) {
     const organisme = OrganismeMapper.fromJson(result.data);
-    addOrganisme.execute(organisme)
-      .finally(() => redirect('/admin/organismes'))
+    return await addOrganisme.execute(organisme)
+      .then(response => {
+        if (response.isSuccess) {
+          return redirect('/admin/organismes')
+        }
+      })
   }
 
   return null;
@@ -48,6 +53,8 @@ export function meta() {
 
 export default function Nouveau() {
   const zo = useZorm("NouveauForm", NouveauForm);
+  const { state } = useTransition()
+
   const options: Option[] = Object.values(Etat).map((_, index, etats) => ({
     key: index.toString(),
     label: etats[index],
@@ -130,7 +137,9 @@ export default function Nouveau() {
           <Link href={"/admin/organismes"}>
             <ButtonOutlined>Annuler</ButtonOutlined>
           </Link>
-          <ButtonContained type="submit">Enregistrer</ButtonContained>
+          <ButtonContained type="submit" loading={state === "submitting"} start={<RiSaveLine className="mr-2" />}>
+            Enregistrer
+          </ButtonContained>
         </div>
       </Form>
     </div>
