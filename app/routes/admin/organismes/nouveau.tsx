@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 import type { ActionArgs} from "@remix-run/node";
-import { redirect } from "@remix-run/node";
-import { Form, useTransition } from "@remix-run/react";
+import { Form, useActionData, useTransition } from "@remix-run/react";
 import { RiSaveLine } from "react-icons/ri";
 import { parseFormAny, useZorm } from "react-zorm";
 import { z } from "zod";
 
+import { Alert } from "~/components/alert";
 import { ButtonContained } from "~/components/button-contained";
 import { ButtonOutlined } from "~/components/button-outlined";
 import { FormLabel } from "~/components/form-label";
@@ -37,11 +37,9 @@ export const action = async ({request}: ActionArgs) => {
   if (result.success) {
     const organisme = OrganismeMapper.fromJson(result.data);
     return await addOrganisme.execute(organisme)
-      .then(response => {
-        if (response.isSuccess) {
-          return redirect('/admin/organismes')
-        }
-      })
+      .then(response => ({
+          success: response.isSuccess
+        }))
   }
 
   return null;
@@ -53,6 +51,10 @@ export function meta() {
 
 export default function Nouveau() {
   const zo = useZorm("NouveauForm", NouveauForm);
+  const result = useActionData()
+  if (result?.success) {
+    zo.form?.reset()
+  }
   const { state } = useTransition()
 
   const options: Option[] = Object.values(Etat).map((_, index, etats) => ({
@@ -142,6 +144,7 @@ export default function Nouveau() {
           </ButtonContained>
         </div>
       </Form>
+      {result?.success && <Alert>Organisme sauvardé</Alert>}
     </div>
   );
 }
