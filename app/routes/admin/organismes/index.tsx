@@ -37,8 +37,7 @@ export default function ListOrganismes() {
             Filtrer
           </ButtonOutlined>
           <Link href={"/admin/organismes/nouveau"}>
-            <ButtonContained>
-              <RiAddBoxLine className="mr-2" />
+            <ButtonContained start={<RiAddBoxLine className="mr-2" />}>
               Nouveau
             </ButtonContained>
           </Link>
