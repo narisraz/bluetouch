@@ -12,25 +12,15 @@ model User {
   email     String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  notes     Note[]
-}
-
-model Note {
-  id        String   @id @default(cuid())
-  title     String
-  body      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId    String
 }
 
 model Organisme {
-  id String @id @default(cuid())
-  nom String
+  id          String   @id @default(cuid())
+  nom         String
   responsable String
-  email String
-  tel String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  email       String
+  tel         String
+  etat        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
