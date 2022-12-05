@@ -6,17 +6,19 @@ import { RiCheckboxCircleLine, RiCloseLine } from 'react-icons/ri';
 import type { Props } from './props';
 
 interface AlertProps extends Props {
-  type?: "success" | "info" | "error"
+  bgcolor?: string
 }
 
-export function Alert({children, type}: AlertProps) {
+export function AlertSuccess({children}: Props) {
+  return <Alert bgcolor="bg-success">{children}</Alert>
+}
+
+export function Alert({children, bgcolor}: AlertProps) {
   let [isOpen, setIsOpen] = useState(true)
 
   function closeModal() {
     setIsOpen(false)
   }
-
-
 
   return <Transition appear show={isOpen} as={Fragment}>
     <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -43,7 +45,7 @@ export function Alert({children, type}: AlertProps) {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="w-full max-w-md overflow-hidden rounded bg-success py-2 px-3 shadow-xl transition-all">
+            <Dialog.Panel className={`w-full max-w-md overflow-hidden rounded bg-success py-2 px-3 shadow-xl transition-all ${bgcolor}`}>
               <Dialog.Title
                 as="h3"
                 className="flex items-center justify-between"
