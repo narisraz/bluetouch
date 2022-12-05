@@ -6,14 +6,10 @@ import { useActionData, useFetcher, useSearchParams } from "@remix-run/react";
 import { parseFormAny } from "react-zorm";
 import { z } from "zod";
 
-import { getSupabase } from "~/integrations/supabase";
-import {
-  refreshAccessToken,
-  commitAuthSession,
-  getAuthSession,
-} from "~/modules/auth";
-import { tryCreateUser, getUserByEmail } from "~/modules/user";
-import { assertIsPost, safeRedirect } from "~/utils";
+import { getSupabase } from "app/integrations/supabase";
+import { getAuthSession, refreshAccessToken, commitAuthSession } from "~/auth";
+import { assertIsPost, safeRedirect } from "~/shared/utils";
+import { getUserByEmail, tryCreateUser } from "~/user";
 
 // imagine a user go back after OAuth login success or type this URL
 // we don't want him to fall in a black hole 👽

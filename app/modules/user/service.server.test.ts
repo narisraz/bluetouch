@@ -1,5 +1,6 @@
 import { matchRequestUrl, rest } from "msw";
 
+import { db } from "app/database";
 import { server } from "mocks";
 import {
   SUPABASE_URL,
@@ -7,8 +8,7 @@ import {
   SUPABASE_AUTH_ADMIN_USER_API,
   authSession,
 } from "mocks/handlers";
-import { USER_EMAIL, USER_ID, USER_PASSWORD } from "mocks/user";
-import { db } from "~/database";
+import { USER_EMAIL, USER_PASSWORD, USER_ID } from "mocks/user";
 
 import { createUserAccount } from "./service.server";
 

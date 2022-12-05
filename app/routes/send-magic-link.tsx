@@ -3,8 +3,8 @@ import { json } from "@remix-run/node";
 import { parseFormAny } from "react-zorm";
 import { z } from "zod";
 
-import { sendMagicLink } from "~/modules/auth";
-import { assertIsPost } from "~/utils/http.server";
+import { sendMagicLink } from "~/auth";
+import { assertIsPost } from "~/shared/utils";
 
 export default async function action({ request }: ActionArgs) {
   assertIsPost(request);

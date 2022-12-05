@@ -1,8 +1,8 @@
 import { Outlet } from "@remix-run/react";
 import { RiArrowRightSLine, RiHome2Line } from "react-icons/ri";
 
-import { Link } from "~/components/link";
-import { Menu } from "~/components/menu";
+import { Link } from "~/shared/components/link";
+import { Menu } from "~/shared/components/menu";
 
 export default function AdminLayout() {
   return (

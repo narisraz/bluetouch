@@ -7,7 +7,7 @@ import {
   NODE_ENV,
   safeRedirect,
   SESSION_SECRET,
-} from "~/utils";
+} from "~/shared/utils";
 
 import { refreshAccessToken, verifyAuthSession } from "./service.server";
 import type { AuthSession } from "./types";

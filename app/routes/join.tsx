@@ -5,14 +5,10 @@ import { useTranslation } from "react-i18next";
 import { parseFormAny, useZorm } from "react-zorm";
 import { z } from "zod";
 
-import { i18nextServer } from "~/integrations/i18n";
-import {
-  createAuthSession,
-  getAuthSession,
-  ContinueWithEmailForm,
-} from "~/modules/auth";
-import { getUserByEmail, createUserAccount } from "~/modules/user";
-import { assertIsPost, isFormProcessing } from "~/utils";
+import { i18nextServer } from "app/integrations/i18n";
+import { ContinueWithEmailForm, createAuthSession, getAuthSession } from "~/auth";
+import { assertIsPost, isFormProcessing } from "~/shared/utils";
+import { getUserByEmail, createUserAccount } from "~/user";
 
 export async function loader({ request }: LoaderArgs) {
   const authSession = await getAuthSession(request);
@@ -148,7 +144,7 @@ export function Join() {
           <button
             data-test-id="create-account"
             type="submit"
-            className="w-full rounded bg-blue-500  py-2 px-4 text-white focus:bg-blue-400 hover:bg-blue-600"
+            className="w-full rounded bg-blue-500  py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             disabled={disabled}
           >
             {t("register.action")}

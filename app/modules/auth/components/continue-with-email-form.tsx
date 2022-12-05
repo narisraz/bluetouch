@@ -2,8 +2,9 @@ import React from "react";
 
 import { useTranslation } from "react-i18next";
 
-import { useTypedFetcher } from "~/hooks/use-fetcher";
-import type { action } from "~/routes/send-magic-link";
+import { useTypedFetcher } from "app/hooks/use-fetcher";
+import type action from "app/routes/send-magic-link";
+
 
 export function ContinueWithEmailForm() {
   const ref = React.useRef<HTMLFormElement>(null);

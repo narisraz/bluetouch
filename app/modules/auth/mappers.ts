@@ -1,6 +1,7 @@
-import type { SupabaseAuthSession } from "~/integrations/supabase";
+import type { SupabaseAuthSession } from "app/integrations/supabase";
 
 import type { AuthSession } from "./types";
+
 
 export function mapAuthSession(
   supabaseAuthSession: SupabaseAuthSession | null

@@ -1,8 +1,9 @@
-import { getSupabaseAdmin } from "~/integrations/supabase";
-import { SERVER_URL } from "~/utils/env";
+import { getSupabaseAdmin } from "app/integrations/supabase";
+import { SERVER_URL } from "~/shared/utils";
 
 import { mapAuthSession } from "./mappers";
 import type { AuthSession } from "./types";
+
 
 export async function createEmailAuthAccount(email: string, password: string) {
   const { data, error } = await getSupabaseAdmin().auth.admin.createUser({

@@ -1,0 +1,131 @@
+import { useState } from "react";
+
+import { Form } from "@remix-run/react";
+import { RiSaveLine } from "react-icons/ri";
+import { useZorm } from "react-zorm";
+import { z } from "zod";
+
+import { Alert } from "~/shared/components/alert";
+import { ButtonContained } from "~/shared/components/button-contained";
+import { ButtonOutlined } from "~/shared/components/button-outlined";
+import { FormLabel } from "~/shared/components/form-label";
+import { Input } from "~/shared/components/input";
+import { Link } from "~/shared/components/link";
+import type { Option} from "~/shared/components/select";
+import { Select } from "~/shared/components/select";
+
+import { Etat } from "../domain/entities/Etat";
+
+interface NouvelOrganismeProps {
+  submitting: boolean,
+  isSaved: boolean
+}
+
+export const NouvelOrganismeForm = z.object({
+  nom: z.string().min(1, "Champs obligatoire"),
+  responsable: z.string().min(1, "Champs obligatoire"),
+  tel: z.string().optional(),
+  email: z
+    .string()
+    .email("Email invalide"),
+  etat: z.string()
+});
+
+export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
+  const zo = useZorm("NouvelOrganismeForm", NouvelOrganismeForm);
+  if (isSaved) {
+    zo.form?.reset()
+  }
+
+  const options: Option[] = Object.values(Etat).map((_, index, etats) => ({
+    key: index.toString(),
+    label: etats[index],
+    value: index.toString(),
+  }));
+  const [selectedEtat, setSelectedEtat] = useState("0");
+
+  return (
+    <div className="flex-1 rounded bg-surface p-4">
+      <div className="border-b pb-4">
+        <div className="text-xl font-semibold">Nouvel organisme</div>
+        <div>
+          Veuillez saisir les informations concernant le nouvel organisme
+        </div>
+      </div>
+
+      <Form ref={zo.ref} method="post" replace>
+        <table className="mt-3 table-auto border-separate border-spacing-2">
+          <tbody>
+            <tr>
+              <FormLabel>Nom de l'organisme</FormLabel>
+              <td>
+                <Input
+                  name={zo.fields.nom()}
+                  placeholder="Nom de l'organisme"
+                  type="text"
+                  className="w-80"
+                  error={zo.errors.nom()?.message}
+                />                
+              </td>
+            </tr>
+            <tr>
+              <FormLabel>Nom du résponsable</FormLabel>
+              <td>
+                <Input
+                  name={zo.fields.responsable()}
+                  placeholder="Nom du résponsable"
+                  type="text"
+                  className="w-80"
+                  error={zo.errors.responsable()?.message}
+                />
+              </td>
+            </tr>
+            <tr>
+              <FormLabel>Tel.</FormLabel>
+              <td>
+                <Input
+                  name={zo.fields.tel()}
+                  placeholder="Numéro de téléphoone"
+                  type="text"
+                  className="w-80"
+                />
+              </td>
+            </tr>
+            <tr>
+              <FormLabel>Email</FormLabel>
+              <td>
+                <Input
+                  name={zo.fields.email()}
+                  placeholder="Email"
+                  type="text"
+                  className="w-80"
+                  error={zo.errors.email()?.message}
+                />
+              </td>
+            </tr>
+            <tr>
+              <FormLabel>Etat</FormLabel>
+              <td>
+                <Select
+                  name={zo.fields.etat()}
+                  options={options}
+                  selected={selectedEtat}
+                  onChange={setSelectedEtat}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="flex gap-2">
+          <Link href={"/admin/organismes"}>
+            <ButtonOutlined>Annuler</ButtonOutlined>
+          </Link>
+          <ButtonContained type="submit" loading={submitting} start={<RiSaveLine className="mr-2" />}>
+            Enregistrer
+          </ButtonContained>
+        </div>
+      </Form>
+      {isSaved && <Alert>Organisme sauvardé</Alert>}
+    </div>
+  );
+}

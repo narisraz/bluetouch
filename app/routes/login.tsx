@@ -5,14 +5,9 @@ import { useTranslation } from "react-i18next";
 import { parseFormAny, useZorm } from "react-zorm";
 import { z } from "zod";
 
-import { i18nextServer } from "~/integrations/i18n";
-import {
-  createAuthSession,
-  getAuthSession,
-  signInWithEmail,
-  ContinueWithEmailForm,
-} from "~/modules/auth";
-import { assertIsPost, isFormProcessing } from "~/utils";
+import { i18nextServer } from "app/integrations/i18n";
+import { getAuthSession, signInWithEmail, createAuthSession, ContinueWithEmailForm } from "~/auth";
+import { assertIsPost, isFormProcessing } from "~/shared/utils";
 
 export async function loader({ request }: LoaderArgs) {
   const authSession = await getAuthSession(request);
@@ -141,7 +136,7 @@ export default function LoginPage() {
           <button
             data-test-id="login"
             type="submit"
-            className="w-full rounded bg-blue-500 py-2 px-4 text-white focus:bg-blue-400 hover:bg-blue-600"
+            className="w-full rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:bg-blue-400"
             disabled={disabled}
           >
             {t("login.action")}
