@@ -1,9 +1,8 @@
-import { RiSearchLine, RiFilter3Line, RiAddBoxLine, RiStopLine, RiDeleteBin3Line, RiPlayLine } from "react-icons/ri";
+import { RiSearchLine, RiFilter3Line, RiAddBoxLine, RiStopLine, RiDeleteBin3Line } from "react-icons/ri";
 
 import { ButtonContained } from "~/shared/components/button-contained";
 import { ButtonIcon } from "~/shared/components/button-icon";
 import { ButtonOutlined } from "~/shared/components/button-outlined";
-import { Chip } from "~/shared/components/chip";
 import { Link } from "~/shared/components/link";
 import { Table } from "~/shared/components/table";
 import { TableCell } from "~/shared/components/table-cell";
@@ -12,6 +11,7 @@ import { TableRow } from "~/shared/components/table-row";
 import { TableRowHead } from "~/shared/components/table-row-head";
 
 import type { Organisme } from "../domain/entities/Organisme";
+import { EtatChip } from "./components/EtatChip";
 
 interface ListOrganismesProps {
   total: number,
@@ -56,68 +56,27 @@ export function ListOrganismes({total, organismes}: ListOrganismesProps) {
           <TableColumnHead className="w-10 text-right">Actions</TableColumnHead>
         </TableRowHead>
         <tbody>
-          <>
-            {organismes.map((value) => {
-              <TableRow>
-                <TableCell>{value.nom}</TableCell>
-                <TableCell>{value.responsable}</TableCell>
-                <TableCell>{value.tel}</TableCell>
-                <TableCell>{value.email}</TableCell>
-                <TableCell>
-                  <Chip className="bg-success">Activé</Chip>
-                </TableCell>
-                <TableCell>
-                  <div className="flex">
-                    <ButtonIcon>
-                      <RiStopLine />
-                    </ButtonIcon>
-                    <ButtonIcon>
-                      <RiDeleteBin3Line />
-                    </ButtonIcon>
-                  </div>
-                </TableCell>
-              </TableRow>;
-            })}
-          </>
-          
-          <TableRow>
-            <TableCell>Zara</TableCell>
-            <TableCell>Naris</TableCell>
-            <TableCell>032 63 498 64</TableCell>
-            <TableCell>naris@/componentsgmail.com</TableCell>
-            <TableCell>
-              <Chip className="bg-success">Activé</Chip>
-            </TableCell>
-            <TableCell>
-              <div className="flex">
-                <ButtonIcon>
-                  <RiStopLine />
-                </ButtonIcon>
-                <ButtonIcon>
-                  <RiDeleteBin3Line />
-                </ButtonIcon>
-              </div>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Zara</TableCell>
-            <TableCell>Naris</TableCell>
-            <TableCell>032 63 498 64</TableCell>
-            <TableCell>naris@/componentsgmail.com</TableCell>
-            <TableCell>
-              <Chip className="bg-error">Suspendu</Chip>
-            </TableCell>
-            <TableCell>
-              <div className="flex">
-                <ButtonIcon>
-                  <RiPlayLine />
-                </ButtonIcon>
-                <ButtonIcon>
-                  <RiDeleteBin3Line />
-                </ButtonIcon>
-              </div>
-            </TableCell>
-          </TableRow>
+          {organismes.map((value) =>
+            <TableRow key={value.nom}>
+              <TableCell>{value.nom}</TableCell>
+              <TableCell>{value.responsable}</TableCell>
+              <TableCell>{value.tel}</TableCell>
+              <TableCell>{value.email}</TableCell>
+              <TableCell>
+                <EtatChip etatId={value.etat} />
+              </TableCell>
+              <TableCell>
+                <div className="flex">
+                  <ButtonIcon>
+                    <RiStopLine />
+                  </ButtonIcon>
+                  <ButtonIcon>
+                    <RiDeleteBin3Line />
+                  </ButtonIcon>
+                </div>
+              </TableCell>
+            </TableRow>
+          )}
         </tbody>
       </Table>
     </div>

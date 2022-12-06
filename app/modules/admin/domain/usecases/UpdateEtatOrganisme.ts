@@ -1,5 +1,5 @@
-import { Errors } from "../entities/Errors";
 import type { OrganismeRepository } from "../ports/OrganismeRepository";
+import { Errors } from "../value-objects/Errors";
 import type { ResponseStatus } from "./responses/ResponseStatus";
 import type { IUseCase } from "./UseCase";
 

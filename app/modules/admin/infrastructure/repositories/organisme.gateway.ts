@@ -31,15 +31,16 @@ export class OrganismeGateway implements OrganismeRepository {
 	async getAll(from: number, to: number): Promise<ResponseStatus<Organisme[]>> {
 		return db.organisme.findMany({
 			skip: from,
-			take: to
+			take: to,
 		})
-		.then(organismes => ({
-				isSuccess: true,
+			.then(organismes => organismes.map(OrganismeMapper.fromJson))
+			.then(organismes => ({
+					isSuccess: true,
+					data: organismes
+				}))
+			.catch(_ => ({
+				isSuccess: false,
 			}))
-		.catch(_ => ({
-				isSuccess: false
-			})
-			);
 	}
 	async addOrganisme(organisme: Organisme): Promise<ResponseStatus<void>> {
 		return db.organisme.create({

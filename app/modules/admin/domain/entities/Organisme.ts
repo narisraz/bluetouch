@@ -1,4 +1,4 @@
-import { Etat } from "./Etat";
+import { Etat } from "../value-objects/Etat";
 
 export class Organisme {
   public responsable!: string;

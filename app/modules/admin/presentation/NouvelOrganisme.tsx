@@ -11,10 +11,8 @@ import { ButtonOutlined } from "~/shared/components/button-outlined";
 import { FormLabel } from "~/shared/components/form-label";
 import { Input } from "~/shared/components/input";
 import { Link } from "~/shared/components/link";
-import type { Option} from "~/shared/components/select";
-import { Select } from "~/shared/components/select";
 
-import { Etat } from "../domain/entities/Etat";
+import { EtatSelect } from "./components/EtatSelect";
 
 interface NouvelOrganismeProps {
   submitting: boolean,
@@ -37,11 +35,6 @@ export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
     zo.form?.reset()
   }
 
-  const options: Option[] = Object.values(Etat).map((_, index, etats) => ({
-    key: index.toString(),
-    label: etats[index],
-    value: index.toString(),
-  }));
   const [selectedEtat, setSelectedEtat] = useState("0");
 
   return (
@@ -106,9 +99,8 @@ export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
             <tr>
               <FormLabel>Etat</FormLabel>
               <td>
-                <Select
+                <EtatSelect
                   name={zo.fields.etat()}
-                  options={options}
                   selected={selectedEtat}
                   onChange={setSelectedEtat}
                 />

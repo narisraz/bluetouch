@@ -9,9 +9,9 @@ export interface Option {
   label: string;
 }
 
-interface SelectProps {
+export interface SelectProps {
   selected: string;
-  options: Option[];
+  options?: Option[];
   name: string;
   onChange: (value: string) => void;
 }
@@ -25,7 +25,7 @@ export function Select({ selected, options, name, onChange }: SelectProps) {
           className={`w-80 rounded border py-2 px-3 text-left focus:outline-primary/50`}
         >
           <span className="block truncate">
-            {options.find((option) => option.key === selected)?.label}
+            {options?.find((option) => option.key === selected)?.label}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <RiArrowDownSFill className="text-gray-400" />
@@ -41,7 +41,7 @@ export function Select({ selected, options, name, onChange }: SelectProps) {
           <Listbox.Options
             className={`absolute mt-1 w-full overflow-auto rounded-md bg-white shadow-lg ring-1 ring-black/5`}
           >
-            {options.map((option) => (
+            {options?.map((option) => (
               <Listbox.Option
                 key={option.key}
                 value={option.value}

@@ -1,4 +1,4 @@
-import type { Errors } from "../../entities/Errors";
+import type { Errors } from "../../value-objects/Errors";
 
 export interface ResponseStatus<Data> {
   isSuccess: boolean;
