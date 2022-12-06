@@ -2,6 +2,7 @@ import type { Organisme } from "../entities/Organisme";
 import type { ResponseStatus } from "../usecases/responses/ResponseStatus";
 
 export interface OrganismeRepository {
+  findOne(id: string): Promise<ResponseStatus<Organisme>>;
   getByNom(nom: string): Promise<ResponseStatus<Organisme>>;
   updateEtatByNom(nom: string): Promise<ResponseStatus<void>>;
   updateOrganisme(organisme: Organisme): Promise<ResponseStatus<void>>;

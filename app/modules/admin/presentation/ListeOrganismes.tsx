@@ -1,4 +1,4 @@
-import { RiSearchLine, RiFilter3Line, RiAddBoxLine, RiStopLine, RiDeleteBin3Line } from "react-icons/ri";
+import { RiSearchLine, RiFilter3Line, RiAddBoxLine, RiStopLine, RiDeleteBin3Line, RiEdit2Line } from "react-icons/ri";
 
 import { ButtonContained } from "~/shared/components/button-contained";
 import { ButtonIcon } from "~/shared/components/button-icon";
@@ -70,6 +70,11 @@ export function ListOrganismes({total, organismes}: ListOrganismesProps) {
                   <ButtonIcon>
                     <RiStopLine />
                   </ButtonIcon>
+                  <Link href={`/admin/organismes/editer/${value.id}`}>
+                    <ButtonIcon>
+                      <RiEdit2Line />
+                    </ButtonIcon>
+                  </Link>
                   <ButtonIcon>
                     <RiDeleteBin3Line />
                   </ButtonIcon>

@@ -4,13 +4,14 @@ import { parseFormAny } from "react-zorm";
 
 import { addOrganisme } from "~/admin/infrastructure/dependencies";
 import { OrganismeMapper } from "~/admin/infrastructure/mappers/organisme.mapper";
-import { NouvelOrganismeForm, NouvelOrganisme } from "~/admin/presentation/NouvelOrganisme";
+import { FormulaireOrganisme, OrganismeForm } from "~/admin/presentation/FormulaireOrganisme";
+import { AlertSuccess } from "~/shared/components/alert";
 import { assertIsPost } from "~/shared/utils";
 
 export const action = async ({request}: ActionArgs) => {
   assertIsPost(request)
   const formData = await request.formData();
-  const result = await NouvelOrganismeForm.safeParseAsync(parseFormAny(formData));
+  const result = await OrganismeForm.safeParseAsync(parseFormAny(formData));
 
   if (result.success) {
     const organisme = OrganismeMapper.fromJson(result.data);
@@ -31,5 +32,8 @@ export default function NouvelOrganismePage() {
   const result = useActionData();
   const { state } = useTransition();
 
-  return <NouvelOrganisme submitting={state === "submitting"} isSaved={result?.success} />
+  return <>
+    <FormulaireOrganisme submitting={state === "submitting"} isSaved={result?.success} />
+    {result?.success && <AlertSuccess>Organisme sauvegardé</AlertSuccess>}
+  </>
 }

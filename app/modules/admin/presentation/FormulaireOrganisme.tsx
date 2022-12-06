@@ -12,14 +12,16 @@ import { FormLabel } from "~/shared/components/form-label";
 import { Input } from "~/shared/components/input";
 import { Link } from "~/shared/components/link";
 
+import type { Organisme } from "../domain/entities/Organisme";
 import { EtatSelect } from "./components/EtatSelect";
 
-interface NouvelOrganismeProps {
+interface FormulaireOrganismeProps {
   submitting: boolean,
-  isSaved: boolean
+  isSaved: boolean,
+  organisme?: Organisme
 }
 
-export const NouvelOrganismeForm = z.object({
+export const OrganismeForm = z.object({
   nom: z.string().min(1, "Champs obligatoire"),
   responsable: z.string().min(1, "Champs obligatoire"),
   tel: z.string().optional(),
@@ -27,15 +29,15 @@ export const NouvelOrganismeForm = z.object({
     .string()
     .email("Email invalide"),
   etat: z.string()
-});
+})
 
-export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
-  const zo = useZorm("NouvelOrganismeForm", NouvelOrganismeForm);
+export function FormulaireOrganisme({ submitting, isSaved, organisme }: FormulaireOrganismeProps) {
+  const zo = useZorm("FormulaireOrganisme", OrganismeForm);
   if (isSaved) {
     zo.form?.reset()
   }
 
-  const [selectedEtat, setSelectedEtat] = useState("0");
+  const [selectedEtat, setSelectedEtat] = useState(organisme?.etat ?? "0");
 
   return (
     <div className="flex-1 rounded bg-surface p-4">
@@ -54,6 +56,7 @@ export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
               <td>
                 <Input
                   name={zo.fields.nom()}
+                  value={organisme?.nom}
                   placeholder="Nom de l'organisme"
                   type="text"
                   className="w-80"
@@ -66,6 +69,7 @@ export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
               <td>
                 <Input
                   name={zo.fields.responsable()}
+                  value={organisme?.responsable}
                   placeholder="Nom du résponsable"
                   type="text"
                   className="w-80"
@@ -78,6 +82,7 @@ export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
               <td>
                 <Input
                   name={zo.fields.tel()}
+                  value={organisme?.tel}
                   placeholder="Numéro de téléphoone"
                   type="text"
                   className="w-80"
@@ -89,6 +94,7 @@ export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
               <td>
                 <Input
                   name={zo.fields.email()}
+                  value={organisme?.email}
                   placeholder="Email"
                   type="text"
                   className="w-80"
@@ -117,7 +123,6 @@ export function NouvelOrganisme({ submitting, isSaved }: NouvelOrganismeProps) {
           </ButtonContained>
         </div>
       </Form>
-      {isSaved && <AlertSuccess>Organisme sauvardé</AlertSuccess>}
     </div>
   );
 }

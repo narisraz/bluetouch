@@ -6,7 +6,8 @@ interface InputProps extends Props {
   type: string;
   placeholder: string;
   name: string;
-  error?: string
+  error?: string;
+  value?: string;
 }
 
 export function Input({
@@ -14,13 +15,15 @@ export function Input({
   placeholder,
   name,
   className,
-  error
+  error,
+  value
 }: InputProps) {
   return (
     <div className="ml-2">
       <input
         name={name}
         type={type}
+        defaultValue={value}
         className={`rounded border py-2 px-3 focus:outline-primary/50 ${error && "border-error"} ${className}`}
         placeholder={placeholder}
       />

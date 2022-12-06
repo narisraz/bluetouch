@@ -6,6 +6,21 @@ import type { ResponseStatus } from "~/admin/domain/usecases/responses/ResponseS
 import { OrganismeMapper } from "../mappers/organisme.mapper";
 
 export class OrganismeGateway implements OrganismeRepository {
+	async findOne(id: string): Promise<ResponseStatus<Organisme>> {
+		return db.organisme.findFirst({
+			where: {
+				id: id
+			}
+		})
+			.then(OrganismeMapper.fromJson)
+			.then(organisme => ({
+				isSuccess: true,
+				data: organisme
+			}))
+			.catch(_ => ({
+				isSuccess: false,
+			}))
+	}
 	async countOrganisme(): Promise<ResponseStatus<number>> {
 		try {
 			const count = await db.organisme.count();
@@ -25,8 +40,20 @@ export class OrganismeGateway implements OrganismeRepository {
 	updateEtatByNom(nom: string): Promise<ResponseStatus<void>> {
 			throw new Error("Method not implemented.");
 	}
-	updateOrganisme(organisme: Organisme): Promise<ResponseStatus<void>> {
-			throw new Error("Method not implemented.");
+	async updateOrganisme(organisme: Organisme): Promise<ResponseStatus<void>> {
+		return db.organisme.update({
+			where: {
+				id: organisme.id
+			},
+			data: OrganismeMapper.toJson(organisme)
+		})
+			.then(_ => ({
+					isSuccess: true,
+				}))
+			.catch(_ => ({
+					isSuccess: false
+				})
+				);
 	}
 	async getAll(from: number, to: number): Promise<ResponseStatus<Organisme[]>> {
 		return db.organisme.findMany({

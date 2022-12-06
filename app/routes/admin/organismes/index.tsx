@@ -13,7 +13,7 @@ interface LoaderData {
 export async function loader() {
   const organismesCount = await countOrganismes.execute();
 
-  if (!organismesCount.isSuccess) {
+  if (!organismesCount.isSuccess || (organismesCount?.data as number) == 0) {
     return json<LoaderData>({
       organismes: [],
       organismesCount: 0
