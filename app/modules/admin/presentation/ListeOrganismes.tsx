@@ -1,3 +1,4 @@
+import { Form } from "@remix-run/react";
 import { RiSearchLine, RiFilter3Line, RiAddBoxLine, RiStopLine, RiDeleteBin3Line, RiEdit2Line } from "react-icons/ri";
 
 import { ButtonContained } from "~/shared/components/button-contained";
@@ -15,14 +16,15 @@ import { EtatChip } from "./components/EtatChip";
 
 interface ListOrganismesProps {
   total: number,
-  organismes: Organisme[]
+  organismes: Organisme[],
+  searching?: boolean
 }
 
-export function ListOrganismes({total, organismes}: ListOrganismesProps) {
+export function ListOrganismes({total, organismes, searching}: ListOrganismesProps) {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <div className="flex items-center">
+        <Form method="post" className="flex items-center">
           <div className="text-xl font-semibold">Organismes</div>
           <input
             name="search"
@@ -30,10 +32,10 @@ export function ListOrganismes({total, organismes}: ListOrganismesProps) {
             className="ml-2 w-96 rounded border py-2 px-3 focus:outline-primary/50"
             placeholder="Rechercher..."
           />
-          <ButtonIcon className="ml-2">
+          <ButtonIcon className="ml-2" loading={searching}>
             <RiSearchLine />
           </ButtonIcon>
-        </div>
+        </Form>
         <div className="flex">
           <ButtonOutlined className="mr-2">
             <RiFilter3Line className="mr-2" />

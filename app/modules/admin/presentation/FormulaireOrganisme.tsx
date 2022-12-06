@@ -48,7 +48,7 @@ export function FormulaireOrganisme({ submitting, isSaved, organisme }: Formulai
         </div>
       </div>
 
-      <Form ref={zo.ref} method="post" replace>
+      <Form ref={zo.ref} method="post">
         <table className="mt-3 table-auto border-separate border-spacing-2">
           <tbody>
             <tr>

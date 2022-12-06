@@ -2,10 +2,21 @@ import { db } from "app/database";
 import type { Organisme } from "~/admin/domain/entities/Organisme";
 import type { OrganismeRepository } from "~/admin/domain/ports/OrganismeRepository";
 import type { ResponseStatus } from "~/admin/domain/usecases/responses/ResponseStatus";
+import { getSupabase } from "~/integrations/supabase";
 
 import { OrganismeMapper } from "../mappers/organisme.mapper";
 
 export class OrganismeGateway implements OrganismeRepository {
+	async searchOrganisme(criteria: string): Promise<ResponseStatus<Organisme[]>> {
+		return getSupabase()
+			.from('Organisme')
+			.select()
+			.or(`nom.ilike.*${criteria}*,responsable.ilike.*${criteria}*`)
+			.then(response => ({
+					isSuccess: response.status === 200,
+					data: response.data?.map(OrganismeMapper.fromJson)
+				}))
+	}
 	async findOne(id: string): Promise<ResponseStatus<Organisme>> {
 		return db.organisme.findFirst({
 			where: {
