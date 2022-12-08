@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Form } from "@remix-run/react";
-import { RiAddBoxLine, RiDeleteBin3Line, RiEdit2Line, RiFilter3Line, RiSearchLine, RiStopLine } from "react-icons/ri";
+import { RiAddBoxLine, RiDeleteBin3Line, RiEdit2Line, RiFilter3Line, RiPlayLine, RiSearchLine, RiStopLine } from "react-icons/ri";
 
 import { ButtonContained } from "~/shared/components/button-contained";
 import { ButtonIcon } from "~/shared/components/button-icon";
@@ -81,7 +81,7 @@ export function ListOrganismes({total, organismes, searching}: ListOrganismesPro
               <TableCell>
                 <div className="flex">
                   <ButtonIcon>
-                    <RiStopLine />
+                    {value.etat as string === "0" ? <RiStopLine /> : <RiPlayLine />}
                   </ButtonIcon>
                   <Link href={`/admin/organismes/editer/${value.id}`}>
                     <ButtonIcon>
