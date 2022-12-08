@@ -1,5 +1,5 @@
-import { Props } from "./props";
+import type { Props } from "./props";
 
 export function FormLabel({ children }: Props) {
-  return <td className="font-semibold align-top pt-2">{ children }</td>
+  return <td className="pt-2 align-top font-semibold">{ children }</td>
 }

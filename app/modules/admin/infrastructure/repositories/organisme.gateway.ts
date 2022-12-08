@@ -7,6 +7,20 @@ import { getSupabase } from "~/integrations/supabase";
 import { OrganismeMapper } from "../mappers/organisme.mapper";
 
 export class OrganismeGateway implements OrganismeRepository {
+	deleteOrganisme(organismeId: string): Promise<ResponseStatus<void>> {
+		return db.organisme.delete({
+			where: {
+				id: organismeId
+			}
+		})
+			.then(_ => ({
+					isSuccess: true,
+				}))
+			.catch(_ => ({
+					isSuccess: false
+				})
+				);
+	}
 	async searchOrganisme(criteria: string): Promise<ResponseStatus<Organisme[]>> {
 		return getSupabase()
 			.from('Organisme')

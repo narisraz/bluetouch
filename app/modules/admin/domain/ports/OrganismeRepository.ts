@@ -2,6 +2,7 @@ import type { Organisme } from "../entities/Organisme";
 import type { ResponseStatus } from "../usecases/responses/ResponseStatus";
 
 export interface OrganismeRepository {
+  deleteOrganisme(organismeId: string): Promise<ResponseStatus<void>>;
   searchOrganisme(criteria: string): Promise<ResponseStatus<Organisme[]>>;
   findOne(id: string): Promise<ResponseStatus<Organisme>>;
   getByNom(nom: string): Promise<ResponseStatus<Organisme>>;

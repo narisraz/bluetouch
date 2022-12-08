@@ -1,4 +1,5 @@
-import type { ActionArgs} from "@remix-run/node";
+
+import type { ActionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useActionData, useLoaderData, useTransition } from "@remix-run/react";
 import { parseFormAny } from "react-zorm";
@@ -79,7 +80,7 @@ export default function ListOrganismesPage() {
 
   if (result) {
     organismes = result?.organismes
-  }  
+  }
   
   return <ListOrganismes total={total} organismes={organismes} searching={state === "submitting"} />
 }

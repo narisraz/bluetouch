@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 import { Form } from "@remix-run/react";
-import { RiSearchLine, RiFilter3Line, RiAddBoxLine, RiStopLine, RiDeleteBin3Line, RiEdit2Line } from "react-icons/ri";
+import { RiAddBoxLine, RiDeleteBin3Line, RiEdit2Line, RiFilter3Line, RiSearchLine, RiStopLine } from "react-icons/ri";
 
 import { ButtonContained } from "~/shared/components/button-contained";
 import { ButtonIcon } from "~/shared/components/button-icon";
 import { ButtonOutlined } from "~/shared/components/button-outlined";
+import { DeleteDialog } from "~/shared/components/delete-dialog";
 import { Link } from "~/shared/components/link";
 import { Table } from "~/shared/components/table";
 import { TableCell } from "~/shared/components/table-cell";
@@ -17,10 +20,18 @@ import { EtatChip } from "./components/EtatChip";
 interface ListOrganismesProps {
   total: number,
   organismes: Organisme[],
-  searching?: boolean
+  searching?: boolean,
 }
 
 export function ListOrganismes({total, organismes, searching}: ListOrganismesProps) {
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [deleteAction, setDeleteAction] = useState("")
+
+  function deleteOrganisme(id: string) {
+    setShowDeleteModal(true)
+    setDeleteAction(`/admin/organismes/supprimer/${id}`)
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -77,7 +88,7 @@ export function ListOrganismes({total, organismes, searching}: ListOrganismesPro
                       <RiEdit2Line />
                     </ButtonIcon>
                   </Link>
-                  <ButtonIcon>
+                  <ButtonIcon onclick={() => deleteOrganisme(value.id)}>
                     <RiDeleteBin3Line />
                   </ButtonIcon>
                 </div>
@@ -86,6 +97,7 @@ export function ListOrganismes({total, organismes, searching}: ListOrganismesPro
           )}
         </tbody>
       </Table>
+      <DeleteDialog isOpen={showDeleteModal} setIsOpen={setShowDeleteModal} deleteAction={deleteAction} ></DeleteDialog>
     </div>
   );
 }
