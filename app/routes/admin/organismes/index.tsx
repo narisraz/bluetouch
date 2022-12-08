@@ -74,7 +74,7 @@ export function meta() {
 }
 
 export default function ListOrganismesPage() {
-  let {organismesCount: total, organismes} = useLoaderData<LoaderData>()
+  let {organismes} = useLoaderData<LoaderData>()
   const result = useActionData<ActionData>()
   const { state } = useTransition();
 
@@ -82,5 +82,5 @@ export default function ListOrganismesPage() {
     organismes = result?.organismes
   }
   
-  return <ListOrganismes total={total} organismes={organismes} searching={state === "submitting"} />
+  return <ListOrganismes organismes={organismes} searching={state === "submitting"} />
 }
