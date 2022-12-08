@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Form } from "@remix-run/react";
-import { RiAddBoxLine, RiDeleteBin3Line, RiEdit2Line, RiFilter3Line, RiPlayLine, RiSearchLine, RiStopLine } from "react-icons/ri";
+import { RiAddBoxLine, RiDeleteBin3Line, RiEdit2Line, RiFilter3Line, RiSearchLine } from "react-icons/ri";
 
 import { ButtonContained } from "~/shared/components/button-contained";
 import { ButtonIcon } from "~/shared/components/button-icon";
@@ -15,7 +15,6 @@ import { TableRow } from "~/shared/components/table-row";
 import { TableRowHead } from "~/shared/components/table-row-head";
 
 import type { Organisme } from "../domain/entities/Organisme";
-import { Etat } from "../domain/value-objects/Etat";
 import { EtatChip } from "./components/EtatChip";
 
 interface ListOrganismesProps {
@@ -81,9 +80,6 @@ export function ListOrganismes({total, organismes, searching}: ListOrganismesPro
               </TableCell>
               <TableCell>
                 <div className="flex">
-                  <ButtonIcon>
-                    {value.etat == Etat.ACTIVE ? <RiStopLine /> : <RiPlayLine />}
-                  </ButtonIcon>
                   <Link href={`/admin/organismes/editer/${value.id}`}>
                     <ButtonIcon>
                       <RiEdit2Line />
