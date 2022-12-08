@@ -7,15 +7,18 @@ interface ButtonContainedProps extends Props {
   loading?: boolean,
   start?: React.ReactNode,
   end?: React.ReactNode,
+  onclick?: () => void
 }
 
-export function ButtonContained({ children, className, type, loading, start, end }: ButtonContainedProps) {
+export function ButtonContained({ children, className, type, loading, start, end, onclick }: ButtonContainedProps) {
   return (
     <button
+      disabled={loading}
+      onClick={onclick}
       type={type}
-      className={`flex cursor-pointer items-center rounded bg-primary py-2 px-4 text-onPrimary duration-200 hover:bg-primary/70 ${className} gap-1`}
+      className={`flex cursor-pointer items-center rounded bg-primary py-2 px-4 text-onPrimary duration-200 hover:bg-primary/70 disabled:cursor-default disabled:bg-gray-500 ${className} gap-1`}
     >
-      {loading && <RiLoader2Line className="animate-spin" /> || start}
+      {loading && <RiLoader2Line className="mr-2 animate-spin" /> || start}
       {children}
       {end}
     </button>
