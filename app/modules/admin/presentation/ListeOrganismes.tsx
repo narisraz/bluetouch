@@ -15,6 +15,7 @@ import { TableRow } from "~/shared/components/table-row";
 import { TableRowHead } from "~/shared/components/table-row-head";
 
 import type { Organisme } from "../domain/entities/Organisme";
+import { Etat } from "../domain/value-objects/Etat";
 import { EtatChip } from "./components/EtatChip";
 
 interface ListOrganismesProps {
@@ -76,12 +77,12 @@ export function ListOrganismes({total, organismes, searching}: ListOrganismesPro
               <TableCell>{value.tel}</TableCell>
               <TableCell>{value.email}</TableCell>
               <TableCell>
-                <EtatChip etatId={value.etat} />
+                <EtatChip etat={value.etat} />
               </TableCell>
               <TableCell>
                 <div className="flex">
                   <ButtonIcon>
-                    {value.etat as string === "0" ? <RiStopLine /> : <RiPlayLine />}
+                    {value.etat == Etat.ACTIVE ? <RiStopLine /> : <RiPlayLine />}
                   </ButtonIcon>
                   <Link href={`/admin/organismes/editer/${value.id}`}>
                     <ButtonIcon>

@@ -3,24 +3,16 @@ import { Chip } from "~/shared/components/chip"
 import type { Props } from "~/shared/components/props"
 
 interface EtatChipProps extends Props {
-  etatId: string
+  etat: Etat
 }
 
-export function EtatChip({etatId}: EtatChipProps) {
+export function EtatChip({etat}: EtatChipProps) {
   let bgcolor = "tes"
-  if (etatId == "0") {
+  if (etat == Etat.ACTIVE) {
     bgcolor = "bg-success"
   } else {
     bgcolor = "bg-error"
   }
 
-  const label = Object.values(Etat)
-    .map((_, index, etats) => ({
-      key: index.toString(),
-      label: etats[index],
-    }))
-    .find(etat => etat.key == etatId)
-    ?.label;
-
-  return <Chip className={bgcolor}>{label}</Chip>
+  return <Chip className={bgcolor}>{etat}</Chip>
 }
