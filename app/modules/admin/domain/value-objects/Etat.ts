@@ -1,4 +1,4 @@
 export enum Etat {
-  ACTIVE = "Activé",
-  SUSPENDU = "Suspendu",
+  ACTIVE = "ACTIVE",
+  SUSPENDU = "SUSPENDU"
 }

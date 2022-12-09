@@ -25,7 +25,7 @@ export function Select({ selected, options, name, onChange }: SelectProps) {
           className={`w-80 rounded border py-2 px-3 text-left focus:outline-primary/50`}
         >
           <span className="block truncate">
-            {options?.find((option) => option.key === selected)?.label}
+            {options?.find((option) => option.value === selected)?.label}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <RiArrowDownSFill className="text-gray-400" />

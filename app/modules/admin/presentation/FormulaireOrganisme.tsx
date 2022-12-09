@@ -12,6 +12,7 @@ import { Input } from "~/shared/components/input";
 import { Link } from "~/shared/components/link";
 
 import type { Organisme } from "../domain/entities/Organisme";
+import { Etat } from "../domain/value-objects/Etat";
 import { EtatSelect } from "./components/EtatSelect";
 
 interface FormulaireOrganismeProps {
@@ -36,7 +37,7 @@ export function FormulaireOrganisme({ submitting, isSaved, organisme }: Formulai
     zo.form?.reset()
   }
 
-  const [selectedEtat, setSelectedEtat] = useState(organisme?.etat ?? "0");
+  const [selectedEtat, setSelectedEtat] = useState<string>(organisme?.etat ?? Etat.ACTIVE);
 
   return (
     <div className="flex-1 rounded bg-surface p-4">

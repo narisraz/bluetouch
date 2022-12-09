@@ -7,12 +7,12 @@ interface EtatChipProps extends Props {
 }
 
 export function EtatChip({etat}: EtatChipProps) {
-  let bgcolor = "tes"
-  if (etat == Etat.ACTIVE) {
-    bgcolor = "bg-success"
-  } else {
+  let bgcolor = "bg-success"
+  let label = "Active"
+  if (etat == Etat.SUSPENDU) {
     bgcolor = "bg-error"
+    label = "Suspendu"
   }
 
-  return <Chip className={bgcolor}>{etat}</Chip>
+  return <Chip className={bgcolor}>{label}</Chip>
 }
