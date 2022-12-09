@@ -19,11 +19,11 @@ export function Breadcrumb({routeId}: BreadcrumbProps) {
       <RiHome2Line />
     </Link>
     {breadcrumbRoutes.map(function (route) {
-        return <div className="flex items-center gap-1" key={route.id}>
-          <RiArrowRightSLine />
-          <Link href={route.url}>{route.name}</Link>
-        </div>;
-      }
+      return <div className="flex items-center gap-1" key={route.id}>
+        <RiArrowRightSLine />
+        <Link href={route.url}>{route.name}</Link>
+      </div>;
+    }
     )}
     <RiArrowRightSLine />
     <div className="font-semibold">{lastRoute.name}</div>
