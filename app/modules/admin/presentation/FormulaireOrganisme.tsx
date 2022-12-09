@@ -10,12 +10,13 @@ import { ButtonOutlined } from "~/shared/components/button-outlined";
 import { FormLabel } from "~/shared/components/form-label";
 import { Input } from "~/shared/components/input";
 import { Link } from "~/shared/components/link";
+import type { Props } from "~/shared/components/props";
 
 import type { Organisme } from "../domain/entities/Organisme";
 import { Etat } from "../domain/value-objects/Etat";
 import { EtatSelect } from "./components/EtatSelect";
 
-interface FormulaireOrganismeProps {
+interface FormulaireOrganismeProps extends Props {
   submitting: boolean,
   isSaved: boolean,
   organisme?: Organisme
@@ -31,7 +32,7 @@ export const OrganismeForm = z.object({
   etat: z.string()
 })
 
-export function FormulaireOrganisme({ submitting, isSaved, organisme }: FormulaireOrganismeProps) {
+export function FormulaireOrganisme({ submitting, isSaved, organisme, children }: FormulaireOrganismeProps) {
   const zo = useZorm("FormulaireOrganisme", OrganismeForm);
   if (isSaved) {
     zo.form?.reset()
@@ -42,10 +43,7 @@ export function FormulaireOrganisme({ submitting, isSaved, organisme }: Formulai
   return (
     <div className="flex-1 rounded bg-surface p-4">
       <div className="border-b pb-4">
-        <div className="text-xl font-semibold">Nouvel organisme</div>
-        <div>
-          Veuillez saisir les informations concernant le nouvel organisme
-        </div>
+        {children}
       </div>
 
       <Form ref={zo.ref} method="post">

@@ -59,7 +59,9 @@ export default function EditerOrganisme() {
   }
 
   return <>
-    <FormulaireOrganisme submitting={state === "submitting"} isSaved={result?.success} organisme={data.organisme} />
+    <FormulaireOrganisme submitting={state === "submitting"} isSaved={result?.success} organisme={data.organisme}>
+      <div className="text-xl font-semibold">Edition organisme</div>
+    </FormulaireOrganisme>
     {result?.success && <AlertSuccess>Organisme mis à jour correctement</AlertSuccess>}
   </>
 }

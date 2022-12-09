@@ -34,7 +34,12 @@ export default function NouvelOrganismePage() {
   const { state } = useTransition();
 
   return <>
-    <FormulaireOrganisme submitting={state === "submitting"} isSaved={result?.success} />
+    <FormulaireOrganisme submitting={state === "submitting"} isSaved={result?.success}>
+      <div className="mb-1 text-xl font-semibold">Nouvel organisme</div>
+      <div>
+        Veuillez saisir les informations concernant le nouvel organisme
+      </div>
+    </FormulaireOrganisme>
     {result?.success && <AlertSuccess>Organisme sauvegardé</AlertSuccess>}
   </>
 }
