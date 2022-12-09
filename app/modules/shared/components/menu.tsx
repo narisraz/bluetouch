@@ -1,19 +1,14 @@
 import { Link, useLocation } from "@remix-run/react";
 import { RiDashboardLine, RiOrganizationChart } from "react-icons/ri";
 
-import type { Route } from "../utils/admin.routes";
-import { AdminRouteId, routes } from "../utils/admin.routes";
+import { AdminRouteId, getRouteById } from "../utils/admin.routes";
 import { MenuItem } from "./menu-item";
 
 export function Menu() {
   const location = useLocation()
 
   function isSelected(id: string) {
-    return location.pathname == getRouteById(id).url
-  }
-
-  function getRouteById(id: string): Route {
-    return routes.find(route => route.id == id) ?? routes[0]
+    return location.pathname.includes(getRouteById(id).url)
   }
 
   return (

@@ -1,10 +1,12 @@
-import { Outlet } from "@remix-run/react";
-import { RiArrowRightSLine, RiHome2Line } from "react-icons/ri";
+import { Outlet, useLocation } from "@remix-run/react";
 
-import { Link } from "~/shared/components/link";
+import { Breadcrumb } from "~/shared/components/breadcrumb";
 import { Menu } from "~/shared/components/menu";
+import { getRouteByLocation } from "~/shared/utils/admin.routes";
 
 export default function AdminLayout() {
+  const location = useLocation()
+  const currentRoute = getRouteByLocation(location)
   return (
     <div className="flex">
       <div className="sticky top-0 h-screen w-72 border-r">
@@ -15,15 +17,7 @@ export default function AdminLayout() {
       </div>
       <div className="flex-1 bg-background">
         <div className="flex justify-between border-b bg-surface p-4">
-          <div className="flex items-center gap-1">
-            <Link href="/admin">
-              <RiHome2Line />
-            </Link>
-            <RiArrowRightSLine />
-            <Link href="/admin/organismes">Organismes</Link>
-            <RiArrowRightSLine />
-            <div className="font-semibold">Nouvel organisme</div>
-          </div>
+          <Breadcrumb routeId={currentRoute.id} />
 
           <div className="flex">
             <div className="px-2">Naris</div>
