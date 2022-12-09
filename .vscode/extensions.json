@@ -2,6 +2,7 @@
   "recommendations": [
     "wilson-godoi.wg-getters-and-setters",
     "prisma.prisma",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "amimaro.remix-run-snippets"
   ]
 }
