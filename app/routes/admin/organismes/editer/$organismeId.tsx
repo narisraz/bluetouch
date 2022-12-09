@@ -9,6 +9,7 @@ import { OrganismeMapper } from "~/admin/infrastructure/mappers/organisme.mapper
 import { FormulaireOrganisme, OrganismeForm } from "~/admin/presentation/FormulaireOrganisme";
 import { AlertSuccess } from "~/shared/components/alert";
 import { assertIsPost } from "~/shared/utils";
+import { AdminRouteId, getRouteById } from "~/shared/utils/admin.routes";
 
 export const action = async ({request, params}: ActionArgs) => {
   assertIsPost(request)
@@ -46,11 +47,8 @@ export async function loader({ params }: LoaderArgs) {
 }
 
 export function meta() {
-  return {
-    title: "Edition organisme"
-  }
+  return { title: getRouteById(AdminRouteId.EDITER_ORGANISME).name };
 }
-
 export default function EditerOrganisme() {
   const data = useLoaderData<LoaderData>()
   const result = useActionData();

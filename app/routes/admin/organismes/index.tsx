@@ -8,6 +8,7 @@ import type { Organisme } from "~/admin/domain/entities/Organisme";
 import { countOrganismes, listOrganismes, searchOrganisme } from "~/admin/infrastructure/dependencies";
 import { ListOrganismes } from "~/admin/presentation/ListeOrganismes";
 import { assertIsPost } from "~/shared/utils";
+import { AdminRouteId, getRouteById } from "~/shared/utils/admin.routes";
 
 interface ActionData {
   organismesCount: number,
@@ -70,7 +71,7 @@ export async function loader() {
 }
 
 export function meta() {
-  return { title: "Les des organismes" };
+  return { title: getRouteById(AdminRouteId.LISTE_ORGANISMES).name };
 }
 
 export default function ListOrganismesPage() {

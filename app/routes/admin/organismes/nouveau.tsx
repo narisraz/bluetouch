@@ -1,4 +1,4 @@
-import type { ActionArgs} from "@remix-run/node";
+import type { ActionArgs } from "@remix-run/node";
 import { useActionData, useTransition } from "@remix-run/react";
 import { parseFormAny } from "react-zorm";
 
@@ -7,6 +7,7 @@ import { OrganismeMapper } from "~/admin/infrastructure/mappers/organisme.mapper
 import { FormulaireOrganisme, OrganismeForm } from "~/admin/presentation/FormulaireOrganisme";
 import { AlertSuccess } from "~/shared/components/alert";
 import { assertIsPost } from "~/shared/utils";
+import { AdminRouteId, getRouteById } from "~/shared/utils/admin.routes";
 
 export const action = async ({request}: ActionArgs) => {
   assertIsPost(request)
@@ -25,7 +26,7 @@ export const action = async ({request}: ActionArgs) => {
 }
 
 export function meta() {
-  return { title: "Nouvel Organisme" };
+  return { title: getRouteById(AdminRouteId.NOUVEL_ORGANISME).name };
 }
 
 export default function NouvelOrganismePage() {
